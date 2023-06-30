@@ -1,0 +1,39 @@
+{
+    "name": "odin-blog-client",
+    "private": true,
+    "version": "1.0.0",
+    "type": "module",
+    "homepage": "",
+    "author": "Tony Hoong (https://github.com/bizarf)",
+    "scripts": {
+        "dev": "vite",
+        "build": "tsc && vite build",
+        "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+        "preview": "vite preview"
+    },
+    "dependencies": {
+        "dayjs": "^1.11.8",
+        "preline": "^1.9.0",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "react-router-dom": "^6.14.0"
+    },
+    "devDependencies": {
+        "@tailwindcss/forms": "^0.5.3",
+        "@types/react": "^18.2.14",
+        "@types/react-dom": "^18.2.6",
+        "@typescript-eslint/eslint-plugin": "^5.60.1",
+        "@typescript-eslint/parser": "^5.60.1",
+        "@vitejs/plugin-react": "^4.0.1",
+        "autoprefixer": "^10.4.14",
+        "eslint": "^8.43.0",
+        "eslint-config-prettier": "^8.8.0",
+        "eslint-plugin-react-hooks": "^4.6.0",
+        "eslint-plugin-react-refresh": "^0.4.1",
+        "postcss": "^8.4.24",
+        "prettier-plugin-tailwindcss": "^0.3.0",
+        "tailwindcss": "^3.3.2",
+        "typescript": "^5.1.5",
+        "vite": "^4.3.9"
+    }
+}

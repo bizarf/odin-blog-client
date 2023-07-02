@@ -4,7 +4,12 @@ type PostsType = {
     textContent: string;
     timestamp: string;
     published: boolean;
-    user: string;
+    user: {
+        firstname: string;
+        lastname: string;
+        isAuthor: boolean;
+        username: string;
+    };
 };
 
 export default PostsType;

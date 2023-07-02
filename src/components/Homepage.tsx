@@ -1,16 +1,9 @@
 import React, { useState, useEffect } from "react";
 import dayjs from "dayjs";
-import User from "../types/user";
-import Header from "./Header";
 import { Link } from "react-router-dom";
 import PostsType from "../types/posts";
 
-type Props = {
-    user: User | undefined;
-    setUser: React.Dispatch<React.SetStateAction<User | undefined>>;
-};
-
-const Homepage = ({ user, setUser }: Props) => {
+const Homepage = () => {
     const [posts, setPosts] = useState<PostsType[]>([]);
 
     const fetchPosts = () => {
@@ -29,7 +22,6 @@ const Homepage = ({ user, setUser }: Props) => {
 
     return (
         <div>
-            <Header user={user} setUser={setUser} />
             <div>
                 <h1>Welcome to the blog</h1>
                 <div>

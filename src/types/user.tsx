@@ -4,6 +4,7 @@ type User = {
     username: string;
     password: string;
     isAuthor: boolean;
+    _id: string;
 };
 
 export default User;

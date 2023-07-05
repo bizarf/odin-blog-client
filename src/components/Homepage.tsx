@@ -5,7 +5,7 @@ import PostsType from "../types/posts";
 
 const Homepage = () => {
     const [posts, setPosts] = useState<PostsType[]>([]);
-    const [totalPosts, setTotalPosts] = useState<number>();
+    // const [totalPosts, setTotalPosts] = useState<number>();
 
     const fetchPosts = () => {
         fetch("https://odin-blog-api-ofv2.onrender.com/api/posts")
@@ -14,7 +14,7 @@ const Homepage = () => {
             })
             .then((data) => {
                 setPosts(data.allPosts);
-                setTotalPosts(data.totalPublishedPostsCount);
+                // setTotalPosts(data.totalPublishedPostsCount);
             });
     };
 

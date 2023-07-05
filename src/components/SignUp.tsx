@@ -51,6 +51,7 @@ const SignUp = ({ user }: Props) => {
                 } else {
                     // error messages go here
                     setError(data.errors);
+                    console.log(error);
                 }
             });
     };
@@ -63,52 +64,157 @@ const SignUp = ({ user }: Props) => {
     });
 
     return (
-        <div>
+        <div className="mx-auto flex w-full max-w-sm flex-col dark:bg-slate-600">
             {!success ? (
-                <form onSubmit={(e) => sendSignUp(e)}>
-                    <label htmlFor="firstname">First Name:</label>
-                    <input
-                        type="text"
-                        name="firstname"
-                        id="firstname"
-                        onChange={(e) => setFirstname(e.target.value)}
-                    />
-                    <label htmlFor="lastname">Last Name:</label>
-                    <input
-                        type="text"
-                        name="lastname"
-                        id="lastname"
-                        onChange={(e) => setLastname(e.target.value)}
-                    />
-                    <label htmlFor="username">Username:</label>
-                    <input
-                        type="email"
-                        name="username"
-                        id="username"
-                        onChange={(e) => setUsername(e.target.value)}
-                    />
-                    <label htmlFor="password">Password:</label>
-                    <input
-                        type="password"
-                        name="password"
-                        id="password"
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
-                    <label htmlFor="confirmPassword">Confirm Password:</label>
-                    <input
-                        type="password"
-                        name="confirmPassword"
-                        id="confirmPassword"
-                        onChange={(e) => setConfirmPassword(e.target.value)}
-                    />
-                    <button type="submit">Submit</button>
-                    {/* error messages go here */}
-                    {error.map((errors, index) => (
-                        <div key={index}>{errors.msg}</div>
-                    ))}
-                </form>
+                <>
+                    <h2 className="py-4 text-center text-2xl font-bold text-gray-800  dark:text-white">
+                        Sign Up
+                    </h2>
+                    <form
+                        onSubmit={(e) => sendSignUp(e)}
+                        className="mb-4 rounded-xl border border-slate-500 p-4 dark:bg-gray-800"
+                    >
+                        <label
+                            htmlFor="firstname"
+                            className="mb-2 block font-semibold dark:text-white"
+                        >
+                            First Name
+                        </label>
+                        <input
+                            type="text"
+                            name="firstname"
+                            id="firstname"
+                            onChange={(e) => setFirstname(e.target.value)}
+                            className="block w-full rounded-md border-gray-400 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 dark:border-gray-700 dark:bg-slate-900 dark:text-gray-400"
+                        />
+                        {error.map((error, index) => {
+                            if (error.path === "firstname") {
+                                return (
+                                    <div
+                                        key={index}
+                                        className="text-sm text-red-600"
+                                    >
+                                        {error.msg}
+                                    </div>
+                                );
+                            }
+                        })}
+                        <label
+                            htmlFor="lastname"
+                            className="mb-2 mt-5 block font-semibold dark:text-white"
+                        >
+                            Last Name
+                        </label>
+                        <input
+                            type="text"
+                            name="lastname"
+                            id="lastname"
+                            onChange={(e) => setLastname(e.target.value)}
+                            className="block w-full rounded-md border-gray-400 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 dark:border-gray-700 dark:bg-slate-900 dark:text-gray-400"
+                        />
+                        {error.map((error, index) => {
+                            if (error.path === "lastname") {
+                                return (
+                                    <div
+                                        key={index}
+                                        className="text-sm text-red-600"
+                                    >
+                                        {error.msg}
+                                    </div>
+                                );
+                            }
+                        })}
+                        <label
+                            htmlFor="username"
+                            className="mb-2 mt-5 block font-semibold dark:text-white"
+                        >
+                            Username
+                        </label>
+                        <input
+                            type="email"
+                            name="username"
+                            id="username"
+                            onChange={(e) => setUsername(e.target.value)}
+                            className="block w-full rounded-md border-gray-400 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 dark:border-gray-700 dark:bg-slate-900 dark:text-gray-400"
+                        />
+                        {error.map((error, index) => {
+                            if (error.path === "username") {
+                                return (
+                                    <div
+                                        key={index}
+                                        className="text-sm text-red-600"
+                                    >
+                                        {error.msg}
+                                    </div>
+                                );
+                            }
+                        })}
+                        <label
+                            htmlFor="password"
+                            className="mb-2 mt-5 block font-semibold dark:text-white"
+                        >
+                            Password
+                        </label>
+                        <input
+                            type="password"
+                            name="password"
+                            id="password"
+                            onChange={(e) => setPassword(e.target.value)}
+                            className="block w-full rounded-md border-gray-400 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 dark:border-gray-700 dark:bg-slate-900 dark:text-gray-400"
+                        />
+                        {error.map((error, index) => {
+                            if (error.path === "password") {
+                                return (
+                                    <div
+                                        key={index}
+                                        className="text-sm text-red-600"
+                                    >
+                                        {error.msg}
+                                    </div>
+                                );
+                            }
+                        })}
+                        <label
+                            htmlFor="confirmPassword"
+                            className="mb-2 mt-5 block font-semibold dark:text-white"
+                        >
+                            Confirm Password
+                        </label>
+                        <input
+                            type="password"
+                            name="confirmPassword"
+                            id="confirmPassword"
+                            onChange={(e) => setConfirmPassword(e.target.value)}
+                            className="block w-full rounded-md border-gray-400 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 dark:border-gray-700 dark:bg-slate-900 dark:text-gray-400"
+                        />
+                        {Array.isArray(error) ? (
+                            error.map((error, index) => {
+                                if (error.path === "confirmPassword") {
+                                    return (
+                                        <div
+                                            key={index}
+                                            className="text-sm text-red-600"
+                                        >
+                                            {error.msg}
+                                        </div>
+                                    );
+                                }
+                            })
+                        ) : (
+                            <div className="text-sm text-red-600">{error}</div>
+                        )}
+                        <button
+                            type="submit"
+                            className="center mt-5 inline-flex items-center justify-center gap-2 rounded-md border border-transparent bg-blue-500 px-4 py-3 text-sm font-semibold text-white transition-all hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800"
+                        >
+                            Submit
+                        </button>
+                    </form>
+                </>
             ) : (
-                <h3>Sign up was successful!</h3>
+                <h2 className="py-4 text-center text-2xl font-bold text-gray-800  dark:text-white">
+                    Sign up was successful!
+                </h2>
             )}
         </div>
     );

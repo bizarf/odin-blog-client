@@ -4,6 +4,7 @@ import dayjs from "dayjs";
 import PostsType from "../types/posts";
 import CommentsType from "../types/comments";
 import UserType from "../types/user";
+import CommentBox from "./CommentBox";
 
 type Props = {
     user: UserType | null;
@@ -15,16 +16,6 @@ const Post = ({ user }: Props) => {
     const [post, setPost] = useState<PostsType>();
     const [comments, setComments] = useState<CommentsType[]>();
 
-    const fetchPost = () => {
-        fetch(`https://odin-blog-api-ofv2.onrender.com/api/post/${id}`)
-            .then((response) => {
-                return response.json();
-            })
-            .then((data) => {
-                setPost(data);
-            });
-    };
-
     useEffect(() => {
         // fetch post
         fetch(`https://odin-blog-api-ofv2.onrender.com/api/post/${id}`)
@@ -34,6 +25,7 @@ const Post = ({ user }: Props) => {
             .then((data) => {
                 setPost(data);
             });
+
         // fetch comments on post
         fetch(`https://odin-blog-api-ofv2.onrender.com/api/post/${id}/comments`)
             .then((response) => {
@@ -72,6 +64,7 @@ const Post = ({ user }: Props) => {
                         </div>
                     );
                 })}
+            {user && <CommentBox id={id} />}
         </div>
     );
 };

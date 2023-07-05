@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Cookies from "universal-cookie";
 import UserType from "../types/user";
@@ -11,8 +11,6 @@ type Props = {
 };
 
 const Header = ({ user, setUser, theme, setTheme }: Props) => {
-    // const [theme, setTheme] = useState<string>();
-
     useEffect(() => {
         const pageTheme = localStorage.getItem("theme") || "light";
         setTheme(pageTheme);

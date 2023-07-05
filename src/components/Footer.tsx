@@ -11,9 +11,9 @@ const Footer = ({ theme }: Props) => {
             >
                 Created by Bizarf{" "}
                 {theme === "light" ? (
-                    <img src="/github-mark.svg" className="mx-2 w-6" />
+                    <img src="./github-mark.svg" className="mx-2 w-6" />
                 ) : (
-                    <img src="/github-mark-white.svg" className="mx-2 w-6" />
+                    <img src="./github-mark-white.svg" className="mx-2 w-6" />
                 )}
                 2023
             </a>

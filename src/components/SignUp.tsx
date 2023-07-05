@@ -203,12 +203,14 @@ const SignUp = ({ user }: Props) => {
                         ) : (
                             <div className="text-sm text-red-600">{error}</div>
                         )}
-                        <button
-                            type="submit"
-                            className="center mt-5 inline-flex items-center justify-center gap-2 rounded-md border border-transparent bg-blue-500 px-4 py-3 text-sm font-semibold text-white transition-all hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800"
-                        >
-                            Submit
-                        </button>
+                        <div className="flex justify-center">
+                            <button
+                                type="submit"
+                                className="mt-3 rounded-md border border-transparent bg-blue-600 px-10 py-3 text-sm font-semibold text-white transition-all hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 dark:bg-green-800 dark:hover:bg-green-900 dark:focus:ring-offset-gray-800"
+                            >
+                                Submit
+                            </button>
+                        </div>
                     </form>
                 </>
             ) : (

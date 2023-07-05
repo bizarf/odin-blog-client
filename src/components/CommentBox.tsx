@@ -57,21 +57,33 @@ const CommentBox = ({ id }: Props) => {
 
     return (
         <div>
-            <form onSubmit={(e) => sendComment(e)}>
-                <label htmlFor="comment"></label>
+            <form
+                onSubmit={(e) => sendComment(e)}
+                className="mx-auto mb-4 max-w-2xl"
+            >
+                <label htmlFor="comment" className="sr-only">
+                    Comment box
+                </label>
                 <textarea
                     className="block w-full rounded-md border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 dark:border-gray-700 dark:bg-slate-900 dark:text-gray-400"
                     rows={3}
-                    placeholder="This is a textarea placeholder"
+                    placeholder="Share your thoughts on this article"
                     name="comment"
                     onChange={(e) => setComment(e.target.value)}
                 ></textarea>
-                <button type="submit" className="commentSubmitBtn">
-                    Submit
-                </button>
                 {error.map((errors, index) => (
-                    <div key={index}>{errors.msg}</div>
+                    <div key={index} className="text-sm text-red-600">
+                        {errors.msg}
+                    </div>
                 ))}
+                <div className="flex justify-center">
+                    <button
+                        type="submit"
+                        className="commentSubmitBtn mt-3 rounded-md border border-transparent bg-blue-600 px-10 py-3 text-sm font-semibold text-white transition-all hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 dark:bg-green-800 dark:hover:bg-green-900 dark:focus:ring-offset-gray-800"
+                    >
+                        Submit
+                    </button>
+                </div>
             </form>
         </div>
     );

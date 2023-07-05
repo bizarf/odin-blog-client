@@ -10,6 +10,8 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 
 const App = () => {
+    const [theme, setTheme] = useState<string>();
+
     const [user, setUser] = useState<User | null>(null);
 
     return (
@@ -18,7 +20,12 @@ const App = () => {
             <HashRouter>
                 {/* flex to make a sticky footer */}
                 <div className="flex-[1_0_auto]">
-                    <Header user={user} setUser={setUser} />
+                    <Header
+                        user={user}
+                        setUser={setUser}
+                        theme={theme}
+                        setTheme={setTheme}
+                    />
                     <Routes>
                         <Route path="/" element={<Homepage />} />
                         <Route
@@ -35,7 +42,7 @@ const App = () => {
                         />
                     </Routes>
                 </div>
-                <Footer />
+                <Footer theme={theme} />
             </HashRouter>
         </div>
     );

@@ -37,30 +37,49 @@ const Post = ({ user }: Props) => {
     }, [id]);
 
     return (
-        <div>
-            <h1>Post</h1>
+        <div className="mx-10">
             {/* post container */}
-            <div className="">
-                <div>{post?.title}</div>
-                <div>{post?.textContent}</div>
-                <div>
-                    {post?.user.firstname} {post?.user.lastname}
-                </div>
+            <div className="my-4 flex flex-col rounded-xl border bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:shadow-slate-700/[.7]">
+                <h2 className="text-center text-3xl font-bold text-gray-800 dark:text-white">
+                    {post?.title}
+                </h2>
+                <p className="mt-1 text-gray-800 dark:text-white">
+                    {post?.textContent}
+                </p>
+                <p className="mt-1 text-gray-800 dark:text-white">
+                    Written by: {post?.user.firstname} {post?.user.lastname}
+                </p>
+                <p className="mt-5 text-xs text-gray-500 dark:text-gray-400">
+                    Created on:
+                    {dayjs(post?.timestamp).format(" ddd DD, YYYY, hh:mma")}
+                </p>
             </div>
             {/* comment container */}
+            <h4 className="text-center text-xl font-bold text-gray-800 dark:text-white">
+                Comments
+            </h4>
             {comments &&
                 comments.map((comment, index) => {
                     return (
-                        <div key={index}>
-                            <div>
-                                {comment.user.firstname} {comment.user.lastname}
+                        <div
+                            key={index}
+                            className="my-3 flex flex-col rounded-xl border bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:shadow-slate-700/[.7]"
+                        >
+                            <div className="flex items-center justify-between">
+                                <p className="text-gray-800 dark:text-white">
+                                    Posted by: {comment.user.firstname}{" "}
+                                    {comment.user.lastname}
+                                </p>
+                                <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
+                                    Posted on:
+                                    {dayjs(post?.timestamp).format(
+                                        " ddd DD, YYYY, hh:mma"
+                                    )}
+                                </p>
                             </div>
-                            <div>{comment.text}</div>
-                            <div>
-                                {dayjs(comment.timestamp).format(
-                                    "ddd DD, YYYY, hh:mma"
-                                )}
-                            </div>
+                            <p className="mt-1 text-gray-800 dark:text-white">
+                                {comment.text}
+                            </p>
                         </div>
                     );
                 })}

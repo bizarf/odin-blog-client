@@ -6,10 +6,12 @@ import UserType from "../types/user";
 type Props = {
     user: UserType | null;
     setUser: React.Dispatch<React.SetStateAction<UserType | null>>;
+    theme: string | undefined;
+    setTheme: React.Dispatch<React.SetStateAction<string | undefined>>;
 };
 
-const Header = ({ user, setUser }: Props) => {
-    const [theme, setTheme] = useState<string>();
+const Header = ({ user, setUser, theme, setTheme }: Props) => {
+    // const [theme, setTheme] = useState<string>();
 
     useEffect(() => {
         const pageTheme = localStorage.getItem("theme") || "light";
@@ -50,7 +52,7 @@ const Header = ({ user, setUser }: Props) => {
     }, [user]);
 
     return (
-        <header className="sticky top-0 z-50 flex w-full bg-white py-4 text-sm dark:bg-gray-800">
+        <header className="sticky top-0 z-50 flex w-full border-b-2 bg-white py-4 text-sm dark:border-b-0 dark:bg-gray-800">
             <nav className="flex w-full flex-row items-center justify-between gap-5 px-5 ">
                 <div>BLOG LOGO OR TEXT GOES HERE</div>
                 <div className="inline-flex">

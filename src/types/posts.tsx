@@ -3,7 +3,7 @@ type PostsType = {
     title: string;
     textContent: string;
     timestamp: string;
-    published: boolean;
+    published: string;
     user: {
         firstname: string;
         lastname: string;

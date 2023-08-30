@@ -23,7 +23,9 @@ const Post = ({ user }: Props) => {
                 return response.json();
             })
             .then((data) => {
-                setPost(data);
+                if (data.success === true) {
+                    setPost(data.post);
+                }
             });
 
         // fetch comments on post
@@ -32,9 +34,11 @@ const Post = ({ user }: Props) => {
                 return response.json();
             })
             .then((data) => {
-                setComments(data.allComments);
+                if (data.success === true) {
+                    setComments(data.allComments);
+                }
             });
-    }, [id]);
+    }, []);
 
     return (
         <div className="mx-10">
@@ -51,7 +55,7 @@ const Post = ({ user }: Props) => {
                 </p>
                 <p className="mt-5 text-xs text-gray-500 dark:text-gray-400">
                     Created on:
-                    {dayjs(post?.timestamp).format(" ddd DD, YYYY, hh:mma")}
+                    {dayjs(post?.timestamp).format(" ddd DD, MMM YYYY, hh:mma")}
                 </p>
             </div>
             {/* comment container */}
@@ -72,8 +76,8 @@ const Post = ({ user }: Props) => {
                                 </p>
                                 <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
                                     Posted on:
-                                    {dayjs(post?.timestamp).format(
-                                        " ddd DD, YYYY, hh:mma"
+                                    {dayjs(comment.timestamp).format(
+                                        " ddd DD, MMM YYYY, hh:mma"
                                     )}
                                 </p>
                             </div>

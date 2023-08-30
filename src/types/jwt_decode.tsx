@@ -1,5 +1,3 @@
-import UserType from "./user";
-
 type JwtDecodeType = {
     exp: number;
     iat: number;

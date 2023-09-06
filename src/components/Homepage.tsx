@@ -13,8 +13,10 @@ const Homepage = () => {
                 return response.json();
             })
             .then((data) => {
-                setPosts(data.allPosts);
-                // setTotalPosts(data.totalPublishedPostsCount);
+                if (data.success) {
+                    setPosts(data.allPosts);
+                    // setTotalPosts(data.totalPublishedPostsCount);
+                }
             });
     };
 

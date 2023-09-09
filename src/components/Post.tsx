@@ -7,7 +7,7 @@ import UserType from "../types/user";
 import CommentBox from "./CommentBox";
 
 type Props = {
-    user: UserType | null;
+    user: UserType | undefined;
 };
 
 const Post = ({ user }: Props) => {

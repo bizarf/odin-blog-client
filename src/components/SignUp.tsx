@@ -4,7 +4,7 @@ import ErrorsType from "../types/errors";
 import UserType from "../types/user";
 
 type Props = {
-    user: UserType | null;
+    user: UserType | undefined;
 };
 
 const SignUp = ({ user }: Props) => {

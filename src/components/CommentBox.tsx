@@ -36,7 +36,7 @@ const CommentBox = ({ id }: Props) => {
             .then((res) => res.json())
             .then((data) => {
                 // data object can either return a token or errors. if we get the token object, then we decode the token and set that as the user state. we store the jwt in the cookie.
-                if (data.message === "Comment was successfully made!") {
+                if (data.success) {
                     // clear the error array
                     setError([]);
                     // disable the submit button, and then refresh the current page.

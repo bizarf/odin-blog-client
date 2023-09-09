@@ -14,7 +14,7 @@ import JwtDecodeType from "./types/jwt_decode";
 
 const App = () => {
     const [theme, setTheme] = useState<string>();
-    const [user, setUser] = useState<User | null>(null);
+    const [user, setUser] = useState<User | undefined>();
 
     const cookies = new Cookies();
 

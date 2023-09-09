@@ -7,7 +7,7 @@ import UserType from "../types/user";
 import ErrorsType from "../types/errors";
 
 type Props = {
-    user: UserType | null;
+    user: UserType | undefined;
     fetchUserData: () => void;
 };
 
@@ -38,9 +38,8 @@ const Login = ({ user, fetchUserData }: Props) => {
         })
             .then((res) => res.json())
             .then((data) => {
-                console.log(data);
                 // data object can either return a token or errors. if we get the token object, then we decode the token and set that as the user state. we store the jwt in the cookie.
-                if (data.token) {
+                if (data.success) {
                     const decode: JwtDecodeType = jwtDecode(data.token);
                     cookies.set("jwt_auth", data.token, {
                         // multiply the expiration value from the jwt by 1000 to change the value to milliseconds so that it'll become a valid date

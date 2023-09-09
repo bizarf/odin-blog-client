@@ -4,8 +4,8 @@ import Cookies from "universal-cookie";
 import UserType from "../types/user";
 
 type Props = {
-    user: UserType | null;
-    setUser: React.Dispatch<React.SetStateAction<UserType | null>>;
+    user: UserType | undefined;
+    setUser: React.Dispatch<React.SetStateAction<UserType | undefined>>;
     theme: string | undefined;
     setTheme: React.Dispatch<React.SetStateAction<string | undefined>>;
     fetchUserData: () => void;
@@ -36,7 +36,7 @@ const Header = ({ user, setUser, theme, setTheme, fetchUserData }: Props) => {
 
     const logout = () => {
         // delete the JWT token from the cookie
-        setUser(null);
+        setUser(undefined);
         cookies.remove("jwt_auth");
     };
 

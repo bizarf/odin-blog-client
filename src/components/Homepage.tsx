@@ -35,10 +35,10 @@ const Homepage = () => {
                 </h2>
                 <div className="mx-6 grid gap-6 sm:grid-cols-2 md:mx-20 md:grid-cols-3">
                     {posts &&
-                        posts.map((post, index) => {
+                        posts.map((post) => {
                             return (
                                 <div
-                                    key={index}
+                                    key={post._id}
                                     className="flex flex-col rounded-xl border bg-white shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:shadow-slate-700/[.7]"
                                 >
                                     <div className="p-4 md:p-5">

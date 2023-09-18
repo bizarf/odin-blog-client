@@ -1,4 +1,4 @@
-import { waitFor, render, screen } from "@testing-library/react";
+import { waitFor, render, screen, act } from "@testing-library/react";
 import React from "react";
 import { Routes, Route, MemoryRouter, useParams } from "react-router-dom";
 import { describe, expect, it, vi } from "vitest";
@@ -140,18 +140,25 @@ describe("comment test", () => {
                 </Routes>
             </MemoryRouter>
         );
+
         await waitFor(() =>
             expect(
                 screen.getByText("This is a test blog post")
             ).toBeInTheDocument()
         );
-        user.click(screen.getByText("This is a test blog post"));
-        // wait for the post page to render
-        await waitFor(() =>
-            expect(screen.getByRole("heading", { name: "Comments" }))
-        );
-        await user.click(screen.getByRole("button", { name: "Submit" }));
-        expect(screen.getByText("Your comment cannot be empty"));
+
+        act(() => {
+            user.click(screen.getByText("This is a test blog post"));
+            // wait for the post page to render
+            waitFor(() =>
+                expect(screen.getByRole("heading", { name: "Comments" }))
+            );
+            user.click(screen.getByRole("button", { name: "Submit" }));
+        });
+
+        await waitFor(() => {
+            expect(screen.getByText("Your comment cannot be empty"));
+        });
     });
 
     it("user makes a comment", async () => {
@@ -167,21 +174,27 @@ describe("comment test", () => {
                 </Routes>
             </MemoryRouter>
         );
+
         await waitFor(() =>
             expect(
                 screen.getByText("This is a test blog post")
             ).toBeInTheDocument()
         );
-        user.click(screen.getByText("This is a test blog post"));
-        // wait for the post page to render
-        await waitFor(() =>
-            expect(screen.getByRole("heading", { name: "Comments" }))
-        );
-        const textbox = screen.getByPlaceholderText(
-            "Share your thoughts on this article"
-        );
-        await user.type(textbox, "This is a test comment");
-        await user.click(screen.getByRole("button", { name: "Submit" }));
+
+        act(() => {
+            user.click(screen.getByText("This is a test blog post"));
+            // wait for the post page to render
+            waitFor(() =>
+                expect(screen.getByRole("heading", { name: "Comments" }))
+            );
+
+            const textbox = screen.getByPlaceholderText(
+                "Share your thoughts on this article"
+            );
+            user.type(textbox, "This is a test comment");
+
+            user.click(screen.getByRole("button", { name: "Submit" }));
+        });
         expect(screen.getByText("This is a test comment"));
     });
 });

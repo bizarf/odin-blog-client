@@ -1,4 +1,5 @@
 type CommentsType = {
+    _id: string;
     user: {
         firstname: string;
         lastname: string;

@@ -3,15 +3,14 @@ import { useParams } from "react-router-dom";
 import dayjs from "dayjs";
 import PostsType from "../types/posts";
 import CommentsType from "../types/comments";
-import UserType from "../types/user";
 import CommentBox from "./CommentBox";
+import useUserStore from "../stores/useUserStore";
 
-type Props = {
-    user: UserType | undefined;
-};
-
-const Post = ({ user }: Props) => {
+const Post = () => {
     const { id } = useParams();
+
+    // user object state
+    const { user } = useUserStore();
 
     const [post, setPost] = useState<PostsType>();
     const [comments, setComments] = useState<CommentsType[]>();

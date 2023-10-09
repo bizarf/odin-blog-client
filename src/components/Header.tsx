@@ -1,17 +1,19 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Cookies from "universal-cookie";
-import UserType from "../types/user";
+import useThemeStore from "../stores/useThemeStore";
+import useUserStore from "../stores/useUserStore";
 
 type Props = {
-    user: UserType | undefined;
-    setUser: React.Dispatch<React.SetStateAction<UserType | undefined>>;
-    theme: string | undefined;
-    setTheme: React.Dispatch<React.SetStateAction<string | undefined>>;
     fetchUserData: () => void;
 };
 
-const Header = ({ user, setUser, theme, setTheme, fetchUserData }: Props) => {
+const Header = ({ fetchUserData }: Props) => {
+    // theme state and setter
+    const { theme, setTheme } = useThemeStore();
+    // user object state and setter
+    const { user, setUser } = useUserStore();
+
     useEffect(() => {
         const pageTheme = localStorage.getItem("theme") || "light";
         setTheme(pageTheme);

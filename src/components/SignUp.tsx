@@ -1,13 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ErrorsType from "../types/errors";
-import UserType from "../types/user";
+import useUserStore from "../stores/useUserStore";
 
-type Props = {
-    user: UserType | undefined;
-};
-
-const SignUp = ({ user }: Props) => {
+const SignUp = () => {
     const [firstname, setFirstname] = useState<string>();
     const [lastname, setLastname] = useState<string>();
     const [username, setUsername] = useState<string>();
@@ -18,6 +14,9 @@ const SignUp = ({ user }: Props) => {
     const [success, setSuccess] = useState<boolean>(false);
 
     const navigate = useNavigate();
+
+    // user object state
+    const { user } = useUserStore();
 
     const sendSignUp = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();

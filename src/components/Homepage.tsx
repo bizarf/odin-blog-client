@@ -44,62 +44,60 @@ const Homepage = () => {
     };
 
     return (
-        <div className="">
+        <>
             <h1 className="py-4 text-center text-4xl font-bold italic text-gray-800 dark:text-white">
                 Welcome to the blog
             </h1>
-            <div className="flex flex-col">
-                <h2 className="py-4 text-center text-3xl font-bold text-gray-800 dark:text-white">
-                    Articles
-                </h2>
-                <div className="mx-6 grid gap-6 sm:grid-cols-2 md:mx-20 md:grid-cols-3">
-                    {posts &&
-                        posts.map((post) => {
-                            return (
-                                <div
-                                    key={post._id}
-                                    className="flex flex-col rounded-xl border bg-white shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:shadow-slate-700/[.7]"
-                                >
-                                    <div className="p-4 md:p-5">
-                                        <h3 className="text-lg font-bold text-gray-800 dark:text-white">
-                                            <Link to={`/posts/${post._id}`}>
-                                                {post.title}
-                                            </Link>
-                                        </h3>
-                                        <p className="mt-1 text-gray-800 dark:text-gray-400">
-                                            {post.textContent}
-                                        </p>
-                                        <p className="mt-5 text-xs text-gray-500 dark:text-gray-500">
-                                            Posted on:
-                                            {dayjs(post.timestamp).format(
-                                                " ddd DD, YYYY, hh:mma"
-                                            )}
-                                        </p>
-                                    </div>
+            <h2 className="py-4 text-center text-3xl font-bold text-gray-800 dark:text-white">
+                Articles
+            </h2>
+            <div className="mx-6 grid gap-6 sm:grid-cols-2 md:mx-20 md:grid-cols-3">
+                {posts &&
+                    posts.map((post) => {
+                        return (
+                            <div
+                                key={post._id}
+                                className="flex flex-col rounded-xl border bg-white shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:shadow-slate-700/[.7]"
+                            >
+                                <div className="p-4 md:p-5">
+                                    <h3 className="text-lg font-bold text-gray-800 dark:text-white">
+                                        <Link to={`/posts/${post._id}`}>
+                                            {post.title}
+                                        </Link>
+                                    </h3>
+                                    <p className="mt-1 text-gray-800 dark:text-gray-400">
+                                        {post.textContent}
+                                    </p>
+                                    <p className="mt-5 text-xs text-gray-500 dark:text-gray-500">
+                                        Posted on:
+                                        {dayjs(post.timestamp).format(
+                                            " ddd DD, YYYY, hh:mma"
+                                        )}
+                                    </p>
                                 </div>
-                            );
-                        })}
-                </div>
-                {totalPages && (
-                    <ReactPaginate
-                        pageCount={totalPages}
-                        breakLabel="..."
-                        nextLabel="Next >"
-                        pageRangeDisplayed={5}
-                        previousLabel="< Previous"
-                        renderOnZeroPageCount={null}
-                        onPageChange={handlePageClick}
-                        className="flex items-center justify-center space-x-4 py-2"
-                        activeClassName="bg-blue-500 justify-center"
-                        pageClassName="w-10 h-10 hover:text-blue-600 p-4 inline-flex items-center text-sm font-medium rounded-full dark:text-white"
-                        previousClassName="dark:text-white hover:text-blue-600 p-4 inline-flex items-center gap-2 rounded-md"
-                        nextClassName="dark:text-white hover:text-blue-600 p-4 inline-flex items-center gap-2 rounded-md"
-                        disabledClassName="pointer-events-none"
-                        breakClassName="dark:text-white"
-                    />
-                )}
+                            </div>
+                        );
+                    })}
             </div>
-        </div>
+            {totalPages && (
+                <ReactPaginate
+                    pageCount={totalPages}
+                    breakLabel="..."
+                    nextLabel="Next >"
+                    pageRangeDisplayed={5}
+                    previousLabel="< Previous"
+                    renderOnZeroPageCount={null}
+                    onPageChange={handlePageClick}
+                    className="flex items-center justify-center space-x-4 py-2"
+                    activeClassName="bg-blue-500 justify-center"
+                    pageClassName="w-10 h-10 hover:text-blue-600 p-4 inline-flex items-center text-sm font-medium rounded-full dark:text-white"
+                    previousClassName="dark:text-white hover:text-blue-600 p-4 inline-flex items-center gap-2 rounded-md"
+                    nextClassName="dark:text-white hover:text-blue-600 p-4 inline-flex items-center gap-2 rounded-md"
+                    disabledClassName="pointer-events-none"
+                    breakClassName="dark:text-white"
+                />
+            )}
+        </>
     );
 };
 

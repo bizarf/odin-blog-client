@@ -3,10 +3,12 @@ import dayjs from "dayjs";
 import { Link, useSearchParams } from "react-router-dom";
 import PostsType from "../types/posts";
 import ReactPaginate from "react-paginate";
+import LoadingSpinner from "./LoadingSpinner";
 
 const Homepage = () => {
     const [posts, setPosts] = useState<PostsType[]>([]);
     const [totalPosts, setTotalPosts] = useState<number>();
+    const [loading, setLoading] = useState<boolean>(true);
 
     // get the current page number from the search parameters
     const [searchParams, setSearchParams] = useSearchParams();
@@ -24,6 +26,9 @@ const Homepage = () => {
                     setPosts(data.allPosts);
                     setTotalPosts(data.totalPublishedPostsCount);
                 }
+            })
+            .finally(() => {
+                setLoading(false);
             });
     };
 
@@ -49,7 +54,7 @@ const Homepage = () => {
                 Welcome to the blog
             </h1>
             <h2 className="py-4 text-center text-3xl font-bold text-gray-800 dark:text-white">
-                Articles
+                Latest Articles
             </h2>
             <div className="mx-6 grid gap-6 sm:grid-cols-2 md:mx-20 md:grid-cols-3">
                 {posts &&
@@ -97,6 +102,7 @@ const Homepage = () => {
                     breakClassName="dark:text-white"
                 />
             )}
+            {loading && <LoadingSpinner />}
         </>
     );
 };

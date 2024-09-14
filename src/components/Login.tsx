@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Cookies from "universal-cookie";
-import jwtDecode from "jwt-decode";
+import { jwtDecode } from "jwt-decode";
 import JwtDecodeType from "../types/jwt_decode";
 import ErrorsType from "../types/errors";
 import useUserStore from "../stores/useUserStore";

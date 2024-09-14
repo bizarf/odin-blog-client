@@ -1,6 +1,6 @@
 import "./App.css";
 import Cookies from "universal-cookie";
-import jwtDecode from "jwt-decode";
+import { jwtDecode } from "jwt-decode";
 import JwtDecodeType from "./types/jwt_decode";
 import Router from "./Router";
 import useUserStore from "./stores/useUserStore";

@@ -6,12 +6,12 @@ import "./setup";
 import userEvent from "@testing-library/user-event";
 import Login from "../src/components/Login";
 
-// vi.mock("../src/components/Login", async () => {
-//     const login = (await vi.importActual(
-//         "../src/components/Login"
-//     )) as typeof Login;
-
-//     return { ...login, sendLogin: vi.fn() };
+// vi.mock(import("../src/components/Login"), async (importOriginal) => {
+//     const actual = await importOriginal();
+//     return {
+//         ...actual,
+//         sendLogin: vi.fn(),
+//     };
 // });
 
 // incomplete test
@@ -21,7 +21,7 @@ import Login from "../src/components/Login";
 //     render(<App />);
 //     await user.click(screen.getByText("Login"));
 //     expect(screen.getByRole("heading", { name: "Login" }));
-//     await user.type(screen.getByLabelText("Username"), "john@doe.com");
+//     await user.type(screen.getByLabelText("Username (E-mail)"), "john@doe.com");
 //     await user.type(screen.getByLabelText("Password"), "password");
 //     await user.click(screen.getByRole("button", { name: "Submit" }));
 

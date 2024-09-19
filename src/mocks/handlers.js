@@ -1,4 +1,4 @@
-import { rest } from "msw";
+import { http, HttpResponse } from "msw";
 
 const allPosts = [
     {
@@ -60,39 +60,37 @@ const token = "E2323";
 
 export const handlers = [
     // fetch published posts
-    rest.get(
-        "https://odin-blog-api-ofv2.onrender.com/api/posts",
-        (req, res, ctx) => {
-            return res(ctx.status(200), ctx.json({ success: true, allPosts }));
-        }
-    ),
+    http.get("https://odin-blog-api-ofv2.onrender.com/api/posts", () => {
+        return HttpResponse.json({
+            success: true,
+            allPosts,
+            totalPublishedPostsCount: allPosts.length,
+        });
+    }),
 
     // fetch the test post
-    rest.get(
+    http.get(
         "https://odin-blog-api-ofv2.onrender.com/api/post/64f7a382801d417e9755e382",
-        (req, res, ctx) => {
-            return res(
-                ctx.status(200),
-                ctx.json({ success: true, post: testPost })
-            );
+        () => {
+            return HttpResponse.json({ success: true, post: testPost });
         }
     ),
 
     // fetch the comments from the test post
-    rest.get(
+    http.get(
         "https://odin-blog-api-ofv2.onrender.com/api/post/64f7a382801d417e9755e382/comments",
-        (req, res, ctx) => {
-            return res(
-                ctx.status(200),
-                ctx.json({ success: true, allComments: testAllComments })
-            );
+        () => {
+            return HttpResponse.json({
+                success: true,
+                allComments: testAllComments,
+            });
         }
     ),
 
     // user makes a comment
-    rest.post(
+    http.post(
         "https://odin-blog-api-ofv2.onrender.com/api/post/64f7a382801d417e9755e382/comment",
-        (req, res, ctx) => {
+        () => {
             if (req.comment) {
                 const newTestComment = {
                     id: "64f907edea893fecfaaf6d18",
@@ -108,31 +106,25 @@ export const handlers = [
                     timestamp: new Date(),
                 };
                 testAllComments.push(newTestComment);
-                return res(ctx.status(200), ctx.json({ success: true }));
+                return HttpResponse.json({ success: true });
             } else {
-                return res(
-                    ctx.status(400),
-                    ctx.json({
-                        success: false,
-                        errors: [{ msg: "Your comment cannot be empty" }],
-                    })
-                );
+                return HttpResponse.json({
+                    success: false,
+                    errors: [{ msg: "Your comment cannot be empty" }],
+                });
             }
         }
     ),
 
     // login route
-    rest.post(
-        "https://odin-blog-api-ofv2.onrender.com/api/login",
-        (req, res, ctx) => {
-            return res(ctx.status(200), ctx.json({ success: true, token }));
-        }
-    ),
+    http.post("https://odin-blog-api-ofv2.onrender.com/api/login", () => {
+        return HttpResponse.json({ success: true, token });
+    }),
 
-    rest.get(
+    http.get(
         "https://odin-blog-api-ofv2.onrender.com/api/user/64f89f20e9476b3f083b9a2f",
-        (req, res, ctx) => {
-            return res(ctx.status(200), ctx.json({ success: true }));
+        () => {
+            return HttpResponse.json({ success: true });
         }
     ),
 ];

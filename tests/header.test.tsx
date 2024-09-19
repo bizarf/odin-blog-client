@@ -1,8 +1,8 @@
 import { waitFor, render, screen } from "@testing-library/react";
 import React, { useState } from "react";
-import { HashRouter, MemoryRouter, Route, Routes } from "react-router-dom";
+import { HashRouter } from "react-router-dom";
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import Header, { logout } from "../src/components/Header";
+import Header from "../src/components/Header";
 import userEvent from "@testing-library/user-event";
 import User from "../src/types/user";
 import Homepage from "../src/components/Homepage";

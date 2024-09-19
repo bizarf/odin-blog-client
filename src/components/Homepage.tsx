@@ -100,6 +100,7 @@ const Homepage = () => {
                     nextClassName="dark:text-white hover:text-blue-600 p-4 inline-flex items-center gap-2 rounded-md"
                     disabledClassName="pointer-events-none"
                     breakClassName="dark:text-white"
+                    data-testid="pagination"
                 />
             )}
             {loading && <LoadingSpinner />}

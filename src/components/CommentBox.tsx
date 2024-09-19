@@ -2,22 +2,44 @@ import React, { useState } from "react";
 import ErrorsType from "../types/errors";
 import Cookies from "universal-cookie";
 import { useNavigate } from "react-router-dom";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { Button } from "@/components/ui/button";
+import {
+    Form,
+    FormControl,
+    FormField,
+    FormItem,
+    FormLabel,
+    FormMessage,
+} from "@/components/ui/form";
+import { Textarea } from "@/components/ui/textarea";
 
 type Props = {
     id: string | undefined;
 };
 
 const CommentBox = ({ id }: Props) => {
-    const [comment, setComment] = useState<string>();
     const [error, setError] = useState<[ErrorsType] | []>([]);
 
     const cookies = new Cookies();
     const navigate = useNavigate();
 
-    const sendComment = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
+    const commentFormSchema = z.object({
+        comment: z.string().min(1, { message: "Comment cannot be empty" }),
+    });
+
+    const form = useForm<z.infer<typeof commentFormSchema>>({
+        resolver: zodResolver(commentFormSchema),
+        defaultValues: {
+            comment: "",
+        },
+    });
+
+    const sendComment = async (values: z.infer<typeof commentFormSchema>) => {
         // make an object with the comment input states
-        const data = { comment, id };
+        const data = { comment: values.comment, id };
         // get the jwt from the cookies and send that as an authorization header
         const jwt = cookies.get("jwt_auth");
         // start fetch api, with a post method and set the header content type to json
@@ -57,34 +79,48 @@ const CommentBox = ({ id }: Props) => {
 
     return (
         <div>
-            <form
-                onSubmit={(e) => sendComment(e)}
-                className="mx-auto mb-4 max-w-2xl"
-            >
-                <label htmlFor="comment" className="sr-only">
-                    Comment box
-                </label>
-                <textarea
-                    className="block w-full rounded-md border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 dark:border-gray-700 dark:bg-slate-900 dark:text-gray-400"
-                    rows={3}
-                    placeholder="Share your thoughts on this article"
-                    name="comment"
-                    onChange={(e) => setComment(e.target.value)}
-                ></textarea>
-                {error.map((errors, index) => (
-                    <div key={index} className="text-sm text-red-600">
-                        {errors.msg}
-                    </div>
-                ))}
-                <div className="flex justify-center">
-                    <button
+            <Form {...form}>
+                <form
+                    onSubmit={form.handleSubmit(sendComment)}
+                    className="mx-auto mb-4 max-w-2xl"
+                >
+                    <FormField
+                        control={form.control}
+                        name="comment"
+                        render={({ field }) => (
+                            <FormItem>
+                                <FormLabel className="sr-only">
+                                    Comment box
+                                </FormLabel>
+                                <FormControl>
+                                    <Textarea
+                                        placeholder="Share your thoughts on this article"
+                                        {...field}
+                                        className="dark:bg-slate-900"
+                                        maxLength={500}
+                                        rows={3}
+                                    />
+                                </FormControl>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+                    {error.map((errors, index) => (
+                        <div
+                            key={index}
+                            className="text-sm text-red-600 dark:text-red-500"
+                        >
+                            {errors.msg}
+                        </div>
+                    ))}
+                    <Button
                         type="submit"
-                        className="commentSubmitBtn mt-3 rounded-md border border-transparent bg-blue-600 px-10 py-3 text-sm font-semibold text-white transition-all hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 dark:bg-green-800 dark:hover:bg-green-900 dark:focus:ring-offset-gray-800"
+                        className="bg-blue-500 dark:text-white block mx-auto mt-2"
                     >
                         Submit
-                    </button>
-                </div>
-            </form>
+                    </Button>
+                </form>
+            </Form>
         </div>
     );
 };

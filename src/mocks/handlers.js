@@ -60,13 +60,19 @@ const token = "E2323";
 
 export const handlers = [
     // fetch published posts
-    http.get("https://odin-blog-api-ofv2.onrender.com/api/posts", () => {
-        return HttpResponse.json({
-            success: true,
-            allPosts,
-            totalPublishedPostsCount: allPosts.length,
-        });
-    }),
+    http.get(
+        
+       
+            "https://odin-blog-api-ofv2.onrender.com/api/posts/published",
+          () =  > {
+                return HttpResponse.json({
+                    success: true,
+                    allPosts,
+         
+               totalPublishedPostsCount: allPosts.length,
+            });
+        }
+    ),
 
     // fetch the test post
     http.get(

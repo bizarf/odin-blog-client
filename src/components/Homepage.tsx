@@ -16,7 +16,7 @@ const Homepage = () => {
 
     const fetchPosts = () => {
         fetch(
-            `https://odin-blog-api-ofv2.onrender.com/api/posts?page=${currentPageNumber}`
+            `https://odin-blog-api-ofv2.onrender.com/api/posts/published?page=${currentPageNumber}`
         )
             .then((response) => {
                 return response.json();

@@ -60,23 +60,18 @@ const token = "E2323";
 
 export const handlers = [
     // fetch published posts
-    http.get(
-        
-       
-            "https://odin-blog-api-ofv2.onrender.com/api/posts/published",
-          () =  > {
-                return HttpResponse.json({
-                    success: true,
-                    allPosts,
-         
-               totalPublishedPostsCount: allPosts.length,
-            });
-        }
-    ),
+    http.get(`${import.meta.env.VITE_API_HOST}/api/posts/published`, () => {
+        return HttpResponse.json({
+            success: true,
+            allPosts,
+
+            totalPublishedPostsCount: allPosts.length,
+        });
+    }),
 
     // fetch the test post
     http.get(
-        "https://odin-blog-api-ofv2.onrender.com/api/post/64f7a382801d417e9755e382",
+        `${import.meta.env.VITE_API_HOST}/api/post/64f7a382801d417e9755e382`,
         () => {
             return HttpResponse.json({ success: true, post: testPost });
         }
@@ -84,7 +79,7 @@ export const handlers = [
 
     // fetch the comments from the test post
     http.get(
-        "https://odin-blog-api-ofv2.onrender.com/api/post/64f7a382801d417e9755e382/comments",
+        `${import.meta.env.VITE_API_HOST}/api/post/64f7a382801d417e9755e382/comments`,
         () => {
             return HttpResponse.json({
                 success: true,
@@ -95,7 +90,7 @@ export const handlers = [
 
     // user makes a comment
     http.post(
-        "https://odin-blog-api-ofv2.onrender.com/api/post/64f7a382801d417e9755e382/comment",
+        `${import.meta.env.VITE_API_HOST}/api/post/64f7a382801d417e9755e382/comment`,
         () => {
             if (req.comment) {
                 const newTestComment = {
@@ -123,12 +118,12 @@ export const handlers = [
     ),
 
     // login route
-    http.post("https://odin-blog-api-ofv2.onrender.com/api/login", () => {
+    http.post(`${import.meta.env.VITE_API_HOST}/api/login`, () => {
         return HttpResponse.json({ success: true, token });
     }),
 
     http.get(
-        "https://odin-blog-api-ofv2.onrender.com/api/user/64f89f20e9476b3f083b9a2f",
+        `${import.meta.env.VITE_API_HOST}/api/user/64f89f20e9476b3f083b9a2f`,
         () => {
             return HttpResponse.json({ success: true });
         }

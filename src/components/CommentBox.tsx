@@ -43,18 +43,15 @@ const CommentBox = ({ id }: Props) => {
         // get the jwt from the cookies and send that as an authorization header
         const jwt = cookies.get("jwt_auth");
         // start fetch api, with a post method and set the header content type to json
-        fetch(
-            `https://odin-blog-api-ofv2.onrender.com/api/post/${id}/comment`,
-            {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `Bearer ${jwt}`,
-                },
-                // need to stringify the username and password to be able to send them as JSON objects
-                body: JSON.stringify(data),
-            }
-        )
+        fetch(`${import.meta.env.VITE_API_HOST}/api/post/${id}/comment`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${jwt}`,
+            },
+            // need to stringify the username and password to be able to send them as JSON objects
+            body: JSON.stringify(data),
+        })
             .then((res) => res.json())
             .then((data) => {
                 // data object can either return a token or errors. if we get the token object, then we decode the token and set that as the user state. we store the jwt in the cookie.

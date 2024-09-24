@@ -86,7 +86,7 @@ const SignUp = () => {
         }
 
         // start fetch api, with a post method and set the header content type to json
-        fetch("https://odin-blog-api-ofv2.onrender.com/api/sign-up", {
+        fetch(`${import.meta.env.VITE_API_HOST}/api/sign-up`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

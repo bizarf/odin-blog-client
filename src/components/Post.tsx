@@ -17,7 +17,7 @@ const Post = () => {
 
     useEffect(() => {
         // fetch post
-        fetch(`https://odin-blog-api-ofv2.onrender.com/api/post/${id}`)
+        fetch(`${import.meta.env.VITE_API_HOST}/api/post/${id}`)
             .then((response) => {
                 return response.json();
             })
@@ -28,7 +28,7 @@ const Post = () => {
             });
 
         // fetch comments on post
-        fetch(`https://odin-blog-api-ofv2.onrender.com/api/post/${id}/comments`)
+        fetch(`${import.meta.env.VITE_API_HOST}/api/post/${id}/comments`)
             .then((response) => {
                 return response.json();
             })

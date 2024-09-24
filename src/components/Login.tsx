@@ -54,7 +54,7 @@ const Login = ({ fetchUserData }: Props) => {
 
     const sendLogin = async (values: z.infer<typeof loginFormSchema>) => {
         // start fetch api, with a post method and set the header content type to json
-        fetch("https://odin-blog-api-ofv2.onrender.com/api/login", {
+        fetch(`${import.meta.env.VITE_API_HOST}/api/login`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

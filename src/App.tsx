@@ -15,15 +15,12 @@ const App = () => {
         const jwt = cookies.get("jwt_auth");
         const decode: JwtDecodeType = jwtDecode(jwt);
 
-        fetch(
-            `https://odin-blog-api-ofv2.onrender.com/api/user/${decode.user}`,
-            {
-                method: "get",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-            }
-        )
+        fetch(`${import.meta.env.VITE_API_HOST}/api/user/${decode.user}`, {
+            method: "get",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        })
             .then((res) => res.json())
             .then((data) => {
                 if (data.success === true) {
